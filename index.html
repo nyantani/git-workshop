@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+
+<!--
+  Google HTML5 slide template
+
+  Authors: Luke Mahé (code)
+           Marcin Wichary (code and design)
+           
+           Dominic Mazzoni (browser compatibility)
+           Charles Chen (ChromeVox support)
+
+  URL: http://code.google.com/p/html5slides/
+-->
+
+<html>
+  <head>
+    <title>Presentation</title>
+
+    <meta charset='utf-8'>
+    <script
+      src='http://html5slides.googlecode.com/svn/trunk/slides.js'></script>
+    <link rel="stylesheet" type="text/css" href="/css/base.css?v=3" />
+  </head>
+  
+  <style>
+    /* Your individual styles here, or just use inline styles if that’s
+       what you want. */
+    
+    
+  </style>
+
+  <body style='display: none'>
+
+    <section class='slides layout-regular'>
+      
+      <!-- Your slides (<article>s) go here. Delete or comment out the
+           slides below. -->
+      <article>
+        <h1>
+          Gitがいい。<br>いや、Gitじゃなきゃだめなんだ!!111
+          <!-- <br> -->
+          <!-- To Two Lines -->
+        </h1>
+        <p>
+    		  nyantani
+          <br>
+          Someday, 2013
+        </p>
+      </article>
+      
+      <article>
+        <h3>
+          エピソード
+        </h3>
+		  <ul>
+  			<li>
+  			  Gitとの日常
+  			</li>
+  			<li>
+  			  ちょっとした気遣い
+  			</li>
+  			<li>
+  			  倦怠期
+  			</li>
+  			<li>
+  			  知ってるつもり - 誤解が生む悲劇
+  			</li>
+  			<li>
+  			  知ることでより好きになる
+  			</li>
+		  </ul>
+        <!-- <p> -->
+        <!--   There is more text just underneath with a <code>code sample: 5px</code>. -->
+        <!-- </p> -->
+      </article>
+
+      <article>
+        <h2>
+    		  Gitとの日常
+        </h2>
+        <img class="right" style="height: 300px" src="images/momtocat.png" />
+      </article>
+
+      <article class="smaller">
+        <h3>
+		      作業用のブランチ(トピックブランチ)を作成
+        </h3>
+          <pre>
+# 参照するブランチを開発ブランチに切り替え
+$ git checkout development 
+
+# 開発ブランチを最新にする
+$ git pull --rebase
+
+# カレント(現在参照している)ブランチから、新しいブランチ(lovely-branch)を作成
+$ git checkout -b lovely-branch
+</pre>
+        <p>
+          <span class="red">派生元のブランチに要注意!</span>
+        </p>
+        <p>
+          <ul>
+            <li>
+              最新の開発(共有)ブランチから派生させるようにしましょう
+            </li>
+          </ul>
+        </p>
+      </article>
+
+      <article>
+        <h3>
+         何らかの作業
+        </h3>
+        <p>
+          <img class="centered" style='height: 500px' src='images/misawa-tarn.gif'>
+        </p>
+      </article>
+
+      <article class="smaller">
+        <h3>
+          ローカルリポジトリに反映
+        </h3>
+          <pre>
+$ git status
+$ git diff
+$ git add hoge.php
+$ git commit -m "add much more love to you, Git"
+</pre>
+
+      <ul>
+        <li>まとまった意味のあるcommit(="こういうことをしました"にまとめられるもの)をしましょう</li>
+        <li>リモートリポジトリとのやりとりは、基本的にはpushとpullだけ</li>
+      </ul>
+      </article>
+
+      <article class="smaller">
+        <h3>
+          リモートリポジトリに反映 &amp; merge
+        </h3>
+          <pre>
+$ git push origin lovely-branch
+</pre>
+        <ul>
+          <li>
+            github.comにアクセス
+          </li>
+          <li>
+            開発ブランチにpull reqestを送る
+          </li>
+          <li>
+            merge
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <h2>
+          ちょっとした気遣い
+        </h2>
+        <img class="right" style="height: 400px" src="images/jenktocat.jpg"/>
+      </article>
+      
+      <article class="smaller">
+        <h3>
+          .gitconfigを使う
+        </h3>
+        <p># だいぶ省略</p>
+        <pre>
+$ cat ~/.gitconfig 
+[color]
+        ui = auto
+[alias]
+        co = checkout
+        ci = commit
+        st = status
+        br = branch
+        lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+        lga = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+[push]
+        default = current
+          ; git push したときにgit push origin {current_branch}の挙動になる 
+[pull]
+        rebase = true
+          ; git pull したときにgit pull --rebaseしてくれる => 不必要なmerge commitが発生しなくなる
+</pre>
+      </article>
+      
+      <article>
+        <h1>DEMO</h1>
+      </article>
+      
+      <article>
+        <h2>倦怠期</h2>
+        <img class="right" style="height: 500px" src="images/drunktocat.jpg"/>
+      </article>
+      
+      <article class='smaller'>
+        <h3>
+          数々のモヤモヤたち
+        </h3>
+        <ul class="build">
+          <li>
+            rebaseが何なのか、実はよくわかんない(´・ω・｀)
+          </li>
+          <li>
+            branchが何なのか、実はよくわかんない(´・ω・｀)
+          </li>
+        </ul>
+        <div class="build">
+          <h5 class="red large_txt">
+            <center>出会った頃を思い出してみよう!!!</center>
+          </h5>
+          <center><p>当然、よいこのみんなはmanはみたよね！？</p></center>
+        </div>
+        <div class="build">
+        <pre>
+$ man git-rebase
+GIT-REBASE(1)                                                               Git Manual                                                              GIT-REBASE(1)
+
+NAME
+       git-rebase - Forward-port local commits to the updated upstream head
+
+SYNOPSIS
+       git rebase [-i | --interactive] [options] [--onto <newbase>]
+               [<upstream>] [<branch>]
+       git rebase [-i | --interactive] [options] --onto <newbase>
+               --root [<branch>]
+       git rebase --continue | --skip | --abort
+......
+</pre>
+      </div>
+      </article>
+
+      <article>
+        <h3>
+          知ってるつもり - 誤解が生む悲劇
+        </h3>
+          <ul class="blue">
+            <li>
+              Gitは分散型リポジトリ!!!
+            </li>
+            <li>
+              Gitはコミットオブジェクトの集まり!!!
+            </li>
+            <li>
+              Gitにはたくさんのエイリアスがある!!!
+            </li> 
+          </ul>
+        <h5>
+          ここが分かればGitの操作を直感的にできるようになれる
+        </h5>
+        <img class="right" style='height: 300px' src='images/Professortocat_v2.png'>
+
+      </article>
+        
+      
+      <article>
+        <h3>
+          分散型リポジトリだから
+        </h3>
+        <ul>
+          <li>
+            <p class="blue">どこに存在するリポジトリも、全部同じ!</p>
+            <ul class="small_txt">
+              <li>
+                bareリポジトリにはワーキングツリーがないとか、ホントは違うところがあるけど、リポジトリ管理者以外は知らなくとも大丈夫
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p class="blue">「ここをリモートリポジトリにしようぜ！」って言ったリポジトリがリモートリポジトリになる</p>
+            <ul class="small_txt">
+              <li>
+                cloneしてきた元のサーバのこと(originとも言う)。
+              </li>
+          </li>
+        </ul>
+        <pre>
+$ git remote -v
+origin  git@github.com:user_name/repo_name.git (fetch)
+origin  git@github.com:user_name/repo_name.git (push)
+</pre>
+      <p class="small_txt">
+        見方: gitプロトコルで@github.comというドメインにアクセスし:user_nameの/repo_name.gitからfetchする
+      </p>
+      </article>
+      
+      <article>
+        <h3>
+          こみっとおぶじぇくと・・・？？？
+        </h3>
+    		<p>ここが本題かつ鬼門</p>
+        <ul>
+          <div class="build">
+            <li>
+              <span class='red'>Gitはcommitオブジェクトの集合である</span>
+            </li>
+            <li>
+              <span class='red'>Gitはcommitオブジェクトの集合である</span>
+            </li>
+            <li>
+              <span class='red'>Gitはcommitオブジェクトの集合である</span>
+            </li>
+         </div>
+        </ul>
+      </article>
+      
+      <article class="smaller">
+        <h3>
+          まずはgit log
+        </h3>
+        
+        <pre>
+$ git log
+commit 46a88e2837d6853707b92f492d3754747899e7c2
+Author: nyantani <hoge@gmail.com>
+Date:   Fri Jan 18 10:04:45 2013 +0900
+
+    mod vimrc
+
+commit e4f88c1e18596eba0febd5fba015647e1cfcd803
+Author: nyantani <hoge@gmail.com>
+Date:   Wed Jan 16 13:54:45 2013 +0900
+
+    mod vimrc
+
+commit 006c2f53d3b9f42bfe20350e1f64141f2b747133
+Author: nyantani <hoge@gmail.com>
+Date:   Thu Jan 10 15:11:49 2013 +0900
+
+    mod vimrc          
+</pre>
+      <p>
+        46a88e2837d6853707b92f492d3754747899e7c2とかの謎の文字列がcommit hash
+      </p>
+      <p>
+        この中に全ての情報が入ってる！！！
+      </p>
+      </article>
+
+      <article>
+        <h3>
+          Slide with an image
+        </h3>
+        <p>
+          <img style='height: 500px' src='images/example-graph.png'>
+        </p>
+        <div class='source'>
+          Source: Sergey Brin
+        </div>
+      </article>
+
+      <article>
+        <h3>
+          Slide with an image (centered)
+        </h3>
+        <p>
+          <img class='centered' style='height: 500px' src='images/example-graph.png'>
+        </p>
+        <div class='source'>
+          Source: Larry Page
+        </div>
+      </article>
+
+      <article class='fill'>
+        <h3>
+          Image filling the slide (with optional header)
+        </h3>
+        <p>
+          <img src='images/example-cat.jpg'>
+        </p>
+        <div class='source white'>
+          Source: Eric Schmidt
+        </div>
+      </article>
+
+      <article>
+        <h3>
+          This slide has some code
+        </h3>
+        <section>
+        <pre>
+&lt;script type='text/javascript'&gt;
+  // Say hello world until the user starts questioning
+  // the meaningfulness of their existence.
+  function helloWorld(world) {
+    for (var i = 42; --i &gt;= 0;) {
+      alert('Hello ' + String(world));
+    }
+  }
+&lt;/script&gt;
+&lt;style&gt;
+  p { color: pink }
+  b { color: blue }
+  u { color: 'umber' }
+&lt;/style&gt;
+</pre>
+        </section>
+      </article>
+      
+      <article class='smaller'>
+        <h3>
+          This slide has some code (small font)
+        </h3>
+        <section>
+        <pre>
+&lt;script type='text/javascript'&gt;
+  // Say hello world until the user starts questioning
+  // the meaningfulness of their existence.
+  function helloWorld(world) {
+    for (var i = 42; --i &gt;= 0;) {
+      alert('Hello ' + String(world));
+    }
+  }
+&lt;/script&gt;
+&lt;style&gt;
+  p { color: pink }
+  b { color: blue }
+  u { color: 'umber' }
+&lt;/style&gt;
+</pre>
+        </section>
+      </article>
+      
+      <article>
+        <q>
+          The best way to predict the future is to invent it.
+        </q>
+        <div class='author'>
+          Alan Kay
+        </div>
+      </article>
+      
+      <article class='smaller'>
+        <q>
+          A distributed system is one in which the failure of a computer 
+          you didn’t even know existed can render your own computer unusable.
+        </q>
+        <div class='author'>
+          Leslie Lamport
+        </div>
+      </article>
+      
+      <article class='nobackground'>
+        <h3>
+          A slide with an embed + title
+        </h3>
+        
+        <iframe src='http://www.google.com/doodle4google/history.html'></iframe>
+      </article>
+
+      <article class='nobackground'>
+        <iframe src='http://www.google.com/doodle4google/history.html'></iframe>
+      </article>
+
+      <article class='fill'>
+        <h3>
+          Full-slide embed with (optional) slide title on top
+        </h3>
+        <iframe src='http://www.google.com/doodle4google/history.html'></iframe>
+      </article>
+      
+      <article>
+        <h3>
+          Thank you!
+        </h3>
+        
+        <ul>
+          <li>
+            <a href='http://www.google.com'>google.com</a>
+        </ul>
+      </article>
+
+    </section>
+
+  </body>
+</html>
